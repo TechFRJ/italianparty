@@ -1,0 +1,7 @@
+services:
+  italianparty:
+    build: .
+    container_name: italianparty-site
+    restart: unless-stopped
+    ports:
+      - "8088:80"

@@ -1,6 +1,7 @@
 const header = document.querySelector("[data-header]");
 const nav = document.querySelector("[data-nav]");
 const navToggle = document.querySelector("[data-nav-toggle]");
+const protectedKeys = new Set(["c", "x", "s", "p", "u", "a"]);
 
 const syncHeader = () => {
   header.classList.toggle("is-scrolled", document.body.classList.contains("inner-page") || window.scrollY > 12);
@@ -34,3 +35,29 @@ window.addEventListener("resize", () => {
 });
 
 syncHeader();
+
+document.addEventListener("contextmenu", (event) => {
+  event.preventDefault();
+});
+
+document.addEventListener("copy", (event) => {
+  event.preventDefault();
+});
+
+document.addEventListener("cut", (event) => {
+  event.preventDefault();
+});
+
+document.addEventListener("dragstart", (event) => {
+  event.preventDefault();
+});
+
+document.addEventListener("keydown", (event) => {
+  const key = event.key.toLowerCase();
+  const protectedShortcut = (event.ctrlKey || event.metaKey) && protectedKeys.has(key);
+  const devToolsShortcut = key === "f12" || (event.ctrlKey && event.shiftKey && ["i", "j", "c"].includes(key));
+
+  if (protectedShortcut || devToolsShortcut) {
+    event.preventDefault();
+  }
+});

@@ -30,6 +30,9 @@ body {
   background:
     linear-gradient(180deg, rgba(255, 250, 241, 0.86), rgba(255, 250, 241, 1) 34rem),
     var(--paper);
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
 }
 
 body.nav-open {
@@ -39,6 +42,9 @@ body.nav-open {
 img {
   display: block;
   max-width: 100%;
+  -webkit-user-drag: none;
+  user-drag: none;
+  pointer-events: none;
 }
 
 a {
@@ -51,6 +57,8 @@ input,
 select,
 textarea {
   font: inherit;
+  -webkit-user-select: text;
+  user-select: text;
 }
 
 .sr-only {
